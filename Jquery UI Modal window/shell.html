@@ -1,0 +1,100 @@
+<!--matt@pegasusits.com-->
+<!DOCTYPE html>
+<html>
+<head>
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> 
+</head>
+<body>
+	<div class="container well">
+		<table id="mainTable" class="table table-striped table-bodered">
+			<thead>
+			<tr>
+			<th>Item Name</th>
+			<th>Item Code</th>
+			<th>Price</th>
+			<th>Quantity</th>
+			<th>Total</th>
+			<th>Delete</th>
+			</tr>
+			</thead>
+			<tbody class="itemList">
+
+			</tbody>
+		</table>
+		<div>
+    		<button id="displayButton" class="btn btn-submit">Create New Item</button>
+		</div>
+	</div>
+<div id="dialog-form" title="Create new Item">
+  <form>
+    <fieldset>
+      <label>Item Name</label>
+      <input type="text" id="itemName">
+      <label>Item Code</label>
+      <input type="text" id="itemCode">
+      <label >Price</label>
+      <input type="text" id="price">
+		<label >Quantity</label>
+      <input type="text" id="quantity">
+    </fieldset>
+  </form>
+</div>
+    
+    
+    
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.js"></script>
+<script type="text/javascript" src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script>	
+		$(function(){
+		var dialog;
+			
+			function addItem (){
+				var dynamicHtml = '';
+				dynamicHtml = '<tr>'+
+					'<td>'+ $('#itemName').val() + '</td>' +
+					'<td>'+$('#itemCode').val() + '</td>' +
+					'<td>' + $('#price').val() + '</td>' +
+					'<td>' + $('#quantity').val()+ '</td>' +
+					'<td>' + $('#price').val()*$('#quantity').val()+ '</td>'+
+					'<td>'+'<button class ="delete">'+'Delete'+'</button>'+'</td>'+
+					'</tr>';
+				$('#mainTable tbody').append(dynamicHtml);
+				$('#mainTable tbody .delete').on('click', function(){
+					console.log('button clicked');
+					$(this).closest('tr').remove();			   
+				});
+			}
+			
+			
+         dialog= $("#dialog-form").dialog({
+             autoOpen : false,
+             height :400,
+             width : 250,
+             modal : true,
+             buttons: {
+				 "Create" : function (){
+					 addItem();
+					 dialog.dialog('close');
+				 },
+                 cancel: function (){
+                     dialog.dialog('close');
+					 
+                 }
+             },
+             close : function (){
+                 $('#itemName').val('');
+				 $('#itemCode').val('');
+				 $('#price').val('');
+				 $('#quantity').val('');
+             }
+         });
+		$('#displayButton').on('click', function(){
+             dialog.dialog('open');
+		});
+		
+	});
+	</script>
+</body>
+</html>
