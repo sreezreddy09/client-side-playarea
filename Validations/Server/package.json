@@ -1,0 +1,23 @@
+{
+  "name": "CrmServer",
+  "version": "1.0.0",
+  "description": "test crm",
+  "main": "serverMain.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://bitbucket.org/dec2015javascript/dec2015training/"
+  },
+  "author": "madhu",
+  "license": "ISC",
+  "homepage": "http://bitbucket.org/dec2015javascript/dec2015training/",
+  "dependencies": {
+    "express": "^4.13.3",
+    "mongodb": "^2.1.3",
+    "body-parser": "~1.10.2",
+    "serve-favicon": "~2.2.0",
+    "morgan": "~1.5.1"
+  }
+}
